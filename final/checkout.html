@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結帳 - Cakie Bakery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+    <!-- 左側導航欄 -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="photo/logo.jpg" alt="商標">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">所有商品</a></li>
+            <li><a href="#" id="cartLink">購物車</a></li>
+            <li><a href="rule.html">訂購須知</a></li>
+            <li><a href="membership.html">會員資訊</a></li>
+            <li><a href="aboutus.html">關於我們</a></li>
+        </ul>
+        <div class="user-auth">
+            <a href="signin.html">登入/註冊</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="checkout-container">
+            <!-- 訂單摘要 -->
+            <div class="order-summary">
+                <h2>訂單摘要</h2>
+                <div class="cart-items-summary">
+                    <div class="cart-item">
+                        <img src="photo/cake1main.jpg" alt="蛋糕" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">草莓鮮奶油蛋糕</h3>
+                            <div class="cart-item-options">
+                                <p class="cart-item-size">尺寸：6吋</p>
+                                <p class="cart-item-accessories">
+                                    配件：
+                                    <span class="accessory">蠟燭</span>
+                                    <span class="accessory">生日插牌</span>
+                                </p>
+                                <p class="cart-item-quantity">數量：1</p>
+                            </div>
+                            <p class="cart-item-price">NT$ 990</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-summary">
+                    <div class="subtotal">
+                        <span>小計</span>
+                        <span class="amount">NT$ 990</span>
+                    </div>
+                    <div class="shipping">
+                        <span>運費</span>
+                        <span class="amount">NT$ 100</span>
+                    </div>
+                    <div class="total">
+                        <span>總計</span>
+                        <span class="amount">NT$ 1090</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 結帳表單 -->
+            <div class="checkout-form">
+                <h2>收件資訊</h2>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="name">收件人姓名</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">聯絡電話</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">電子信箱</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">收件地址</label>
+                        <input type="text" id="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-time">希望送達時間</label>
+                        <input type="datetime-local" 
+                               id="delivery-time" 
+                               required 
+                               min="<?php echo date('Y-m-d\TH:i', strtotime('+1 day')); ?>"
+                               max="<?php echo date('Y-m-d\TH:i', strtotime('+7 days')); ?>">
+                        <small class="form-text">請至少提前一天預訂，最多可預訂7天後的時間</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment">付款方式</label>
+                        <select id="payment" required>
+                            <option value="">請選擇付款方式</option>
+                            <option value="credit">Apple Pay</option>
+                            <option value="transfer">Line Pay</option>
+                            <option value="transfer">銀行轉帳</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">備註</label>
+                        <textarea id="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">確認付款</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 獲取表單數據
+        const formData = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            address: document.getElementById('address').value,
+            deliveryTime: document.getElementById('delivery-time').value,
+            payment: document.getElementById('payment').value,
+            notes: document.getElementById('notes').value
+        };
+
+        // 這裡可以添加表單驗證邏輯
+        
+        // 模擬訂單提交
+        alert('訂單已提交成功！');
+        window.location.href = 'order-success.html'; // 跳轉到訂單成功頁面
+    });
+
+        function updateTotal() {
+            const subtotal = 990; // 這裡應該是從購物車數據中計算
+            const shipping = 100;
+            const total = subtotal + shipping;
+            
+            document.querySelector('.subtotal .amount').textContent = `NT$ ${subtotal}`;
+            document.querySelector('.total .amount').textContent = `NT$ ${total}`;
+        }
+
+        // 頁面加載時計算總金額
+        document.addEventListener('DOMContentLoaded', updateTotal);
+
+        function validateForm() {
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            // 驗證手機號碼格式
+            const phonePattern = /^09\d{8}$/;
+            if (!phonePattern.test(phone)) {
+                alert('請輸入正確的手機號碼格式');
+                return false;
+            }
+            
+            // 驗證電子郵件格式
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('請輸入正確的電子郵件格式');
+                return false;
+            }
+            
+            return true;
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            if (!validateForm()) {
+                e.preventDefault();
+            }
+        });
+        </script>
+
+</body>
+</html>
