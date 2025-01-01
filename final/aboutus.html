@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我們 - Cakie Bakery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/aboutus.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 側邊欄 -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="photo/logo.jpg" alt="Logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">所有商品</a></li>
+                <li><a href="#">購物車</a></li>
+                <li><a href="rule.html">訂購須知</a></li>
+                <li><a href="membership.html">會員資訊</a></li>
+                <li><a href="aboutus.html">關於我們</a></li>
+            </ul>
+            <div class="user-auth">
+                <a href="signin.html">登入/註冊</a>
+            </div>
+        </aside>
+
+        <!-- 主要內容區 -->
+        <main class="main-content">
+            <div class="about-container">
+                <!-- 品牌標題區 -->
+                <div class="brand-header">
+                    <div class="brand-logo">
+                        <img src="photo/logo.jpg" alt="Cakie Bakery Logo">
+                    </div>
+                    <h1 class="brand-title">Cakie Bakery</h1>
+                    <p class="brand-subtitle">烘焙幸福的滋味，點亮生活中的每一刻</p>
+                </div>
+
+                <!-- 品牌故事 -->
+                <div class="section">
+                    <h2 class="section-title">故事的起點：來自對家的眷戀</h2>
+                    <div class="section-content">
+                        <p>在 Cakie Bakery 的世界裡，時間彷彿靜止，空氣中瀰漫著奶油與糖的香甜，每一份蛋糕都承載著我們對幸福的獨特詮釋。這裡不僅僅是一個販售蛋糕的平台，更是一個充滿故事、溫暖和創意的線上空間，我們希望透過指尖的溫度，將幸福的滋味傳遞到您的手中。</p>
+                    </div>
+                </div>
+
+                <!-- 堅持與理念 -->
+                <div class="section">
+                    <h2 class="section-title">我們的堅持：天然、手作、與無限創意</h2>
+                    <div class="section-content">
+                        <div class="highlight-box">
+                            <p>我們深信，最好的食材才能成就最美味的蛋糕。因此，Cakie Bakery 堅持選用天然、新鮮的食材，來自法國諾曼第的發酵奶油，以及台灣在地小農栽種的有機草莓。我們拒絕使用人工香料、色素和防腐劑，只為了呈現食材最原始的風味。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 承諾 -->
+                <div class="section">
+                    <h2 class="section-title">我們的承諾</h2>
+                    <ul class="promise-list">
+                        <li>以天然食材和手作工藝，烘焙幸福的滋味</li>
+                        <li>提供客製化服務，打造獨一無二的幸福蛋糕</li>
+                        <li>透過線上平台和未來實體店面，傳遞幸福和溫暖</li>
+                        <li>與您一同分享生活中的美好時刻</li>
+                    </ul>
+                </div>
+
+            <div class="section">
+                <h2 class="section-title">聯絡我們</h2>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <p><i class="fas fa-phone-alt"></i>  02-2233-4455</p>
+                        <p><i class="fas fa-envelope"></i>  cakiebakery@gmail.com</p>
+                        <p><i class="fab fa-facebook"></i>  cakie bakery</p>
+                        <p><i class="fab fa-instagram"></i>  cakie.bakery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- 店員 -->
+        <div class="section">
+            <h2 class="section-title">店員介紹</h2>
+            <div class="section-content">
+                <div class="highlight-box1">
+                    <div class="team-members">
+                        <div class="team-member">
+                            <img src="photo/wei.jpg" alt="韋子晴" class="team-photo">
+                            <p>韋子晴</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="photo/ching.jpg" alt="陳瑩罄" class="team-photo">
+                            <p>陳瑩罄</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="photo/chen.jpg" alt="陳宛妤" class="team-photo">
+                            <p>陳宛妤</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </main>
+    </div>
+
+    <!-- 購物車結構 -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>購物車</h2>
+            <button class="close-btn" onclick="toggleCart()">×</button>
+        </div>
+
+        <div class="cart-items">
+            <div class="cart-empty">購物車是空的！快去選購一些商品吧！</div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="total-amount">總計: NT$0</div>
+            <button class="checkout-btn">購買</button>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
+            const sidebar = document.getElementById('cartSidebar');
+            
+            if (sidebar.classList.contains('active')) {
+                overlay.classList.remove('active');
+                sidebar.classList.remove('active');
+            } else {
+                overlay.classList.add('active');
+                sidebar.classList.add('active');
+            }
+        }
+
+        // 为遮罩层添加点击事件，点击时关闭购物车和遮罩层
+        document.getElementById('cartOverlay').addEventListener('click', function() {
+            toggleCart();  // 触发切换，关闭侧边栏和遮罩层
+        });
+
+        function updateQuantity(btn, change) {
+            const quantitySpan = btn.parentElement.querySelector('.quantity-display');
+            let quantity = parseInt(quantitySpan.textContent);
+            quantity = Math.max(1, quantity + change);
+            quantitySpan.textContent = quantity;
+            updateTotal();
+        }
+
+        function deleteItem(btn) {
+            const cartItem = btn.closest('.cart-item');
+            cartItem.remove();
+            updateTotal();
+            checkEmptyCart();
+        }
+
+        function checkEmptyCart() {
+            const cartItems = document.querySelector('.cart-items');
+            if (cartItems.children.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty">購物車是空的</div>';
+                document.querySelector('.total-amount').textContent = '總計: NT$ 0';
+            }
+        }
+
+        function updateTotal() {
+            const items = document.querySelectorAll('.cart-item');
+            let total = 0;
+            
+            items.forEach(item => {
+                const price = parseInt(item.querySelector('.cart-item-price').textContent.replace(/[^0-9]/g, ''));
+                const quantity = parseInt(item.querySelector('.quantity-display').textContent);
+                total += price * quantity;
+            });
+
+            document.querySelector('.total-amount').textContent = `總計: NT$ ${total}`;
+        }
+
+        // 為購物車按鈕添加點擊事件
+        document.querySelector('.sidebar-menu li:nth-child(2) a').addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleCart();
+        });
+
+        // 點擊遮罩層關閉購物車
+        document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+    </script>
+</body>
+</html>

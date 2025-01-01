@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品詳情 - 海鹽蝶豆花蛋糕</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/itempage.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左側導航欄 -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="photo/logo.jpg" alt="商標">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">所有商品</a></li>
+                <li><a href="#" id="cartLink">購物車</a></li>
+                <li><a href="rule.html">訂購須知</a></li>
+                <li><a href="membership.html">會員資訊</a></li>
+                <li><a href="aboutus.html">關於我們</a></li>
+            </ul>
+            <div class="user-auth">
+                <a href="signin.html">登入/註冊</a>
+            </div>
+        </aside>
+    
+        <!-- 購物車結構 -->
+        <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+        <div class="cart-sidebar" id="cartSidebar">
+            <div class="cart-header">
+                <h2>購物車</h2>
+                <button class="close-btn" onclick="toggleCart()">×</button>
+            </div>
+
+            <div class="cart-items">
+                <div class="cart-empty">購物車是空的！快去選購一些商品吧！</div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="total-amount">總計: NT$0</div>
+                <button class="checkout-btn">購買</button>
+            </div>
+        </div>
+
+        <!-- 主要內容區 -->
+        <main class="main-content">
+            <div class="product-container">
+                <!-- 商品圖片和描述區 -->
+                <div class="product-left">
+                    <div class="main-image-container">
+                        <div class="detail-container">
+                            <img src="photo/cake7d1.jpg" alt="蛋糕細節圖1" class="detail">
+                            <img src="photo/cake7d2.jpg" alt="蛋糕細節圖2" class="detail">
+                            <img src="photo/cake7d3.jpg" alt="蛋糕細節圖3" class="detail">
+                        </div>
+                        <img src="photo/cake7main.jpg" alt="蛋糕主圖" class="main-image">
+                    </div>
+                    <h1 class="product-title">海鹽蝶豆花蛋糕</h1>
+                    <p class="product-description">
+                        融合天然蝶豆花的清新色澤與海鹽的微妙鹹香，帶來視覺與味覺的雙重享受。  
+                        鬆軟蛋糕層搭配細緻奶霜，每一口都散發出獨特的花香與鹹甜平衡的口感。
+                    </p>
+                </div>
+
+                <!-- 商品資訊區 -->
+                <div class="product-info">
+                    <p class="product-price">NT$ 590</p>
+
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label for="size">尺寸</label>
+                            <select id="size">
+                                <option value="4" data-price="590" selected>4吋</option>
+                                <option value="6" data-price="980">6吋(+NT$390)</option>
+                                <option value="8" data-price="1180">8吋(+NT$590)</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="filling">夾心</label>
+                            <select id="filling">
+                                <option value="fruit">水果</option>
+                                <option value="icecream">冰淇淋</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="accessories">配件</label>
+                            <select id="accessories">
+                                <option value="yes">需要</option>
+                                <option value="no">不需要</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary">直接購買</button>
+                        <button class="btn btn-secondary" onclick="addToCart()">加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 評論區 -->
+            <section class="reviews-section">
+                <h2>顧客評價</h2>
+                
+                <!-- 添加評論表單 -->
+                <div class="review-form">
+                    <textarea placeholder="分享您的使用心得..."></textarea>
+                    <button type="submit">發布評論</button>
+                </div>
+
+                <!-- 現有的評論卡片 -->
+                <div class="review-card">
+                    <h3>宋小萱</h3>
+                    <p>蛋糕的顏色也太好看了吧!</p>
+                </div>
+                <div class="review-card">
+                    <h3>黃小圓</h3>
+                    <p>鹹甜口感味道絕妙!不輸任何一家!</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 購物車 JS -->
+    <script>
+        // 切換購物車顯示
+        function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
+            const sidebar = document.getElementById('cartSidebar');
+            overlay.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        }
+
+        // 更新購物車總金額
+        function updateTotal() {
+            const items = document.querySelectorAll('.cart-item');
+            let total = 0;
+
+            items.forEach(item => {
+                const price = parseInt(item.querySelector('.cart-item-price').textContent.replace(/[^0-9]/g, ''));
+                const quantity = parseInt(item.querySelector('.quantity-display').textContent);
+                total += price * quantity;
+            });
+
+            // 更新總金額顯示
+            document.querySelector('.total-amount').textContent = `總計: NT$ ${total}`;
+
+            // 如果沒有商品，顯示購物車是空的文字
+            const cartEmptyMessage = document.querySelector('.cart-empty');
+            if (total === 0) {
+                document.querySelector('.cart-items').innerHTML = '<div class="cart-empty">購物車是空的！快去選購一些商品吧！</div>';
+            } else {
+                cartEmptyMessage.style.display = 'none'; // 隱藏購物車空的文字
+            }
+        }
+
+        // 添加到購物車
+        function addToCart() {
+            const productTitle = document.querySelector('.product-title').textContent.trim();
+            const productImage = document.querySelector('.main-image').src;
+
+            const size = document.getElementById('size').value;
+            const filling = document.getElementById('filling').value;
+            const accessories = document.getElementById('accessories').value;
+
+            // 根據所選尺寸獲取價格
+            const sizePrice = document.getElementById('size').options[document.getElementById('size').selectedIndex].dataset.price;
+            const productPrice = `NT$ ${sizePrice}`;
+
+            const cartItemsContainer = document.querySelector('.cart-items');
+            const existingItem = Array.from(cartItemsContainer.children).find(item =>
+                item.dataset.size === size &&
+                item.dataset.filling === filling &&
+                item.dataset.accessories === accessories
+            );
+
+            if (existingItem) {
+                const quantitySpan = existingItem.querySelector('.quantity-display');
+                quantitySpan.textContent = parseInt(quantitySpan.textContent) + 1;
+            } else {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.dataset.size = size;
+                cartItem.dataset.filling = filling;
+                cartItem.dataset.accessories = accessories;
+
+                cartItem.innerHTML = `
+                    <img src="${productImage}" alt="${productTitle}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">${productTitle}</h3>
+                        <p class="cart-item-options">尺寸：${size}吋｜夾心：${filling}｜配件：${accessories === 'yes' ? '需要' : '不需要'}</p>
+                        <p class="cart-item-price">${productPrice}</p>
+                        <div class="item-controls">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                                <span class="quantity-display">1</span>
+                                <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                            </div>
+                            <button class="delete-btn" onclick="deleteItem(this)">
+                                <i class="fas fa-trash-alt"></i> <!-- Font Awesome 垃圾桶圖示 -->
+                            </button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            }
+
+            updateTotal();
+            toggleCart();
+        }
+
+        // 更新數量
+        function updateQuantity(btn, change) {
+            const quantitySpan = btn.parentElement.querySelector('.quantity-display');
+            let quantity = parseInt(quantitySpan.textContent) + change;
+            if (quantity < 1) return alert("商品數量不能小於 1！");
+            quantitySpan.textContent = quantity;
+            updateTotal();
+        }
+
+        // 刪除商品
+        function deleteItem(btn) {
+            if (!confirm("確定要刪除此商品嗎？")) return;
+            const item = btn.closest('.cart-item');
+            item.remove();
+            updateTotal();
+            if (!document.querySelector('.cart-item')) {
+                document.querySelector('.cart-items').innerHTML = '<div class="cart-empty">購物車是空的！快去選購一些商品吧！</div>';
+            }
+        }
+
+        // 點擊購物車按鈕
+        document.getElementById('cartLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleCart();
+        });
+
+        // 點擊直接購買
+        document.getElementById('directBuyBtn').addEventListener('click', function() {
+            if (!document.querySelector('.cart-item')) {
+                alert("購物車是空的，請先添加商品！");
+                return;
+            }
+            alert("進入結帳流程！");
+        });
+
+        // 點擊遮罩關閉購物車
+        document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+    </script>
+</body>
+</html>

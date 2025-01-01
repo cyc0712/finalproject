@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cakie Bakery - 會員註冊</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/signin.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左側導航欄 -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="photo/logo.jpg" alt="商標">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">所有商品</a></li>
+                <li><a href="#">購物車</a></li>
+                <li><a href="rule.html">訂購須知</a></li>
+                <li><a href="membership.html">會員資訊</a></li>
+                <li><a href="aboutus.html">關於我們</a></li>
+            </ul>
+            <div class="user-auth">
+                <a href="signin.html">登入/註冊</a>
+            </div>
+        </aside>
+
+        <!-- 主要內容區 -->
+        <main class="main-content">
+            <div class="signup-container">
+                <h2 class="form-title">會員註冊</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="username">用戶名稱</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">電子信箱</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密碼</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">確認密碼</label>
+                        <input type="password" id="confirm-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">手機號碼</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <button type="submit" class="submit-btn">註冊</button>
+                </form>
+                <div class="login-link">
+                    已有帳號？
+                    <span class="login-login"><a href="login.html">立即登入</a></span>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

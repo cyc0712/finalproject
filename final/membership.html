@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cakie Bakery - 會員資料</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/membership.css">
+</head>
+<body>
+    <!-- 左側導航欄 -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="photo/logo.jpg" alt="商標">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">所有商品</a></li>
+            <li><a href="#">購物車</a></li>
+            <li><a href="rule.html">訂購須知</a></li>
+            <li><a href="membership.html">會員資訊</a></li>
+            <li><a href="aboutus.html">關於我們</a></li>
+        </ul>
+        <div class="user-auth">
+            <a href="signin.html">登入/註冊</a>
+        </div>
+    </aside>
+
+    <div class="container">
+        <div class="member-dashboard">
+            <!-- 個人資訊卡片 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <span>陳</span>
+                    </div>
+                    <div class="profile-title">
+                        <h2>陳希望</h2>
+                        <span class="member-level">白金會員</span>
+                    </div>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="info-group">
+                        <i class="fas fa-user"></i>
+                        <div class="info-content">
+                            <label>會員姓名</label>
+                            <div class="info-value">陳希望</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-group">
+                        <i class="fas fa-envelope"></i>
+                        <div class="info-content">
+                            <label>電子信箱</label>
+                            <div class="info-value">hope.chen@gmail.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-group">
+                        <i class="fas fa-phone"></i>
+                        <div class="info-content">
+                            <label>聯絡電話</label>
+                            <div class="info-value">0912-345-678</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-group">
+                        <i class="fas fa-birthday-cake"></i>
+                        <div class="info-content">
+                            <label>出生日期</label>
+                            <div class="info-value">1995/08/15</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <a href="edit.html"><button class="edit-btn"><i class="fas fa-edit"></i> 編輯資料</button></a>
+                    <a href="password.html"><button class="change-password-btn"><i class="fas fa-key"></i> 修改密碼</button></a>
+                </div>
+            </div>
+
+            <!-- 優惠券區塊 -->
+            <div class="coupon-section">
+                <h3><i class="fas fa-ticket-alt"></i> 我的優惠券</h3>
+                <div class="coupon-list">
+                    <div class="coupon-card">
+                        <div class="coupon-amount">85折</div>
+                        <div class="coupon-details">
+                            <h4>新會員首購優惠</h4>
+                            <p>全品項商品可用</p>
+                            <span class="coupon-expiry">有效期限：2025/12/31</span>
+                        </div>
+                    </div>
+
+                    <div class="coupon-card special">
+                        <div class="coupon-amount">9折</div>
+                        <div class="coupon-details">
+                            <h4>生日月專屬優惠</h4>
+                            <p>生日當月限定使用</p>
+                            <span class="coupon-expiry">有效期限：2025/12/31</span>
+                        </div>
+                    </div>
+
+                    <div class="coupon-card">
+                        <div class="coupon-amount">$100</div>
+                        <div class="coupon-details">
+                            <h4>會員專屬折價券</h4>
+                            <p>消費滿1000元可使用</p>
+                            <span class="coupon-expiry">有效期限：2025/12/31</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- 歷史訂單記錄 -->
+           <div class="order-section">
+            <h3>歷史訂單記錄</h3>
+            <div class="order-container">
+                <div class="order-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>訂單編號</th>
+                                <th>訂單日期</th>
+                                <th>品名</th>
+                                <th>數量</th>
+                                <th>合計</th>
+                                <th>備註</th>
+                                <th>訂單狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A20240326</td>
+                                <td>2024/03/26</td>
+                                <td>6吋野莓芋泥蛋糕</td>
+                                <td>1</td>
+                                <td>$920</td>
+                                <td>無</td>
+                                <td>已完成</td>
+                            </tr>
+                            <tr>
+                                <td>A20241024</td>
+                                <td>2021/10/24</td>
+                                <td>4吋藍莓Oreo蛋糕</td>
+                                <td>1</td>
+                                <td>$680</td>
+                                <td>無</td>
+                                <td>已完成</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <!-- 購物車結構 -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>購物車</h2>
+            <button class="close-btn" onclick="toggleCart()">×</button>
+        </div>
+
+        <div class="cart-items">
+            <div class="cart-empty">購物車是空的！快去選購一些商品吧！</div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="total-amount">總計: NT$0</div>
+            <button class="checkout-btn">購買</button>
+        </div>
+    </div>
+
+
+    <script>
+        // 購物車按鈕點擊事件
+        document.querySelector('.sidebar-menu li:nth-child(2) a').addEventListener('click', function(e) {
+            e.preventDefault();
+            // 這裡可以添加購物車相關的功能
+        });
+    </script>
+    <!--購物車js-->
+    <script>
+        function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
+            const sidebar = document.getElementById('cartSidebar');
+            
+            if (sidebar.classList.contains('active')) {
+                overlay.classList.remove('active');
+                sidebar.classList.remove('active');
+            } else {
+                overlay.classList.add('active');
+                sidebar.classList.add('active');
+            }
+        }
+
+        // 为遮罩层添加点击事件，点击时关闭购物车和遮罩层
+        document.getElementById('cartOverlay').addEventListener('click', function() {
+            toggleCart();  // 触发切换，关闭侧边栏和遮罩层
+        });
+
+        function updateQuantity(btn, change) {
+            const quantitySpan = btn.parentElement.querySelector('.quantity-display');
+            let quantity = parseInt(quantitySpan.textContent);
+            quantity = Math.max(1, quantity + change);
+            quantitySpan.textContent = quantity;
+            updateTotal();
+        }
+
+        function deleteItem(btn) {
+            const cartItem = btn.closest('.cart-item');
+            cartItem.remove();
+            updateTotal();
+            checkEmptyCart();
+        }
+
+        function checkEmptyCart() {
+            const cartItems = document.querySelector('.cart-items');
+            if (cartItems.children.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty">購物車是空的</div>';
+                document.querySelector('.total-amount').textContent = '總計: NT$ 0';
+            }
+        }
+
+        function updateTotal() {
+            const items = document.querySelectorAll('.cart-item');
+            let total = 0;
+            
+            items.forEach(item => {
+                const price = parseInt(item.querySelector('.cart-item-price').textContent.replace(/[^0-9]/g, ''));
+                const quantity = parseInt(item.querySelector('.quantity-display').textContent);
+                total += price * quantity;
+            });
+
+            document.querySelector('.total-amount').textContent = `總計: NT$ ${total}`;
+        }
+
+        // 為購物車按鈕添加點擊事件
+        document.querySelector('.sidebar-menu li:nth-child(2) a').addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleCart();
+        });
+
+        // 點擊遮罩層關閉購物車
+        document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+    </script>
+</body>
+</html>

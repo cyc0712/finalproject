@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cakie Bakery - 會員登入</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左側導航欄 -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="photo/logo.jpg" alt="商標">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">所有商品</a></li>
+                <li><a href="#">購物車</a></li>
+                <li><a href="rule.html">訂購須知</a></li>
+                <li><a href="membership.html">會員資訊</a></li>
+                <li><a href="aboutus.html">關於我們</a></li>
+            </ul>
+            <div class="user-auth">
+                <a href="signin.html">登入/註冊</a>
+            </div>
+        </aside>
+
+        <!-- 主要內容區 -->
+        <main class="main-content">
+            <div class="signup-container">
+                <h2 class="form-title">會員登入</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="phoneoremail">手機號碼電子信箱</label>
+                        <input type="phoneoremail" id="phoneoremail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密碼</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="login" class="login-link">登入</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
