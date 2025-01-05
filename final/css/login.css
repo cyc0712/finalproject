@@ -1,0 +1,175 @@
+:root {
+    --primary-cream: #FFF8E7;     /* 淡奶油色 - 主背景 */
+    --secondary-cream: #F7E8D0;   /* 溫暖奶油色 - 側邊欄 */
+    --accent-brown: #9B8579;      /* 奶茶棕 - 強調色 */
+    --light-beige: #FDFAF6;       /* 米白色 - 卡片背景 */
+    --warm-vanilla: #E7D7C1;      /* 溫暖香草色 - 互動元素 */
+    --dark-cream: #8B7355;        /* 深奶油棕 - 主要文字 */
+    --soft-peach: #FFE6D5;        /* 柔和蜜桃色 - 特殊強調 */
+    --pale-cream: #FFF3E0;        /* 淺奶油色 - 次要背景 */
+    --golden-cream: #FFE0B2;      /* 金黃奶油色 - 重要元素 */
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 微軟正黑體;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-cream);
+    color: var(--text-color);
+}
+
+/* 左側導航欄 */
+.sidebar {
+    width: 20%;  /* 固定寬度為20% */
+    min-width: 250px;  /* 設定最小寬度 */
+    max-width: 300px;  /* 設定最大寬度 */
+    background-color: var(--secondary-cream);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(155, 133, 121, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--warm-vanilla);
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-beige);
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-menu {
+    list-style: none;
+    width: 100%;
+}
+
+        .sidebar-menu li {
+            margin: 15px 0;
+        }
+
+.sidebar-menu a {
+    color: var(--dark-cream);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px;
+}
+
+        .user-auth {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+.user-auth a {
+    color: var(--dark-cream);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid var(--warm-vanilla);
+}
+
+/* 主要內容區域樣式 */
+.main-content {
+    width: 80%;
+    padding: 40px;
+    margin-left: 20%;
+}
+
+/* 註冊表單樣式 */
+.signup-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--light-beige);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #e6c200;
+}
+
+.login-link {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-color);
+    color: rgb(35, 31, 31);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.login-link:hover {
+    background-color: #e6c200;
+}
+

@@ -1,0 +1,489 @@
+:root {
+    --primary-cream: #FFF8E7;     /* 淡奶油色 - 主背景 */
+    --secondary-cream: #F7E8D0;   /* 溫暖奶油色 - 側邊欄 */
+    --accent-brown: #9B8579;      /* 奶茶棕 - 強調色 */
+    --light-beige: #FDFAF6;       /* 米白色 - 卡片背景 */
+    --warm-vanilla: #E7D7C1;      /* 溫暖香草色 - 互動元素 */
+    --dark-cream: #8B7355;        /* 深奶油棕 - 主要文字 */
+    --soft-peach: #FFE6D5;        /* 柔和蜜桃色 - 特殊強調 */
+    --pale-cream: #FFF3E0;        /* 淺奶油色 - 次要背景 */
+    --golden-cream: #FFE0B2;      /* 金黃奶油色 - 重要元素 */
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    background-color: var(--primary-cream);
+    margin: 0px;
+}
+
+/* 左側導航欄 */
+.sidebar {
+    width: 20%;  /* 固定寬度為20% */
+    min-width: 250px;  /* 設定最小寬度 */
+    max-width: 300px;  /* 設定最大寬度 */
+    background-color: var(--secondary-cream);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(155, 133, 121, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--warm-vanilla);
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-beige);
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-menu {
+    list-style: none;
+    width: 100%;
+}
+
+        .sidebar-menu li {
+            margin: 15px 0;
+        }
+
+.sidebar-menu a {
+    color: var(--dark-cream);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px;
+}
+
+        .user-auth {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+.user-auth a {
+    color: var(--dark-cream);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid var(--warm-vanilla);
+}
+
+/* 主要內容區域 */
+.main-content {
+    margin-left: 20%;  /* 配合側邊欄寬度 */
+    min-width: 0;  /* 確保內容可以正確縮放 */
+    padding: 2rem 3rem;
+    width: 80%;
+    background-color: var(--primary-cream);
+}
+
+        /* 更新商品卡片相關樣式 */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+.product-card {
+    background-color: var(--light-beige);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(155, 133, 121, 0.05);
+    transition: transform 0.3s ease;
+    height: auto;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(155, 133, 121, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    color: var(--dark-cream);
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    color: var(--accent-brown);
+    font-weight: 600;
+}
+
+        /* 響應式調整 */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 250px;  /* 在較小螢幕上固定寬度 */
+            }
+            
+            .main-content {
+                margin-left: 250px;  /* 配合側邊欄寬度 */
+                width: calc(100% - 250px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image {
+                height: 250px;
+            }
+        }
+
+/* 購物車相關樣式 */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 998;
+    transition: opacity 0.3s ease;
+}
+
+.cart-sidebar {
+    width: 300px;
+    position: fixed;
+    right: -300px;
+    top: 0;
+    height: 100vh;
+    background: white !important;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: right 0.3s ease;
+}
+
+.cart-overlay.active {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.4);  /* 改變透明度 */
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.cart-header h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--accent-brown);  /* 按鈕顏色改為強調色 */
+}
+
+.cart-items {
+    background-color: white;
+    color: #333;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details {
+    margin-left: 15px;
+    flex: 1;
+}
+
+.cart-item-title {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    color: var(--accent-brown);
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 20px;
+}
+
+.quantity-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.quantity-btn:hover {
+    background: #eee;
+}
+
+.delete-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #fff0f0;
+    color: #ff4d4d;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #ff4d4d;
+    color: white;
+    transform: scale(1.1);
+}
+
+.cart-summary {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.total-amount {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ffd700;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #ffc800;
+}
+
+.cart-empty {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+    font-size: 1.1rem;
+}
+
+.slideshow-container {
+    max-width: 800px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.mySlides {
+    width: 100%;
+    animation: fade 2.0s;
+    display: block; /* 去除圖片的下方空白 */
+    margin: 0 auto; /* 圖片居中 */
+    border-radius: 20%;
+}
+/* 添加 banner 樣式 */
+.banner {
+    width: 100%;
+    position: relative; /* 使箭頭相對於此容器定位 */
+}
+
+.mySlides img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+.pre, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem; /* 調整箭頭大小 */
+    color: white; /* 箭頭顏色 */
+    background-color: rgba(0, 0, 0, 0.5); /* 背景色 */
+    padding: 10px;
+    cursor: pointer;
+}
+
+.pre {
+    left: 10px; /* 左箭頭位置 */
+}
+
+.next {
+    right: 10px; /* 右箭頭位置 */
+}
+
+.pre:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dot-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    cursor: pointer;
+    margin-bottom: 5px; /* 添加底部間隔 */
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* 廣告彈窗樣式 */
+#adOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#adContent {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.promo-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.promo-btn:hover {
+    background-color: #45a049;
+}
+

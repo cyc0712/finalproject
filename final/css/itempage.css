@@ -1,0 +1,472 @@
+:root {
+    --primary-cream: #FFF8E7;     /* 淡奶油色 - 主背景 */
+    --secondary-cream: #F7E8D0;   /* 溫暖奶油色 - 側邊欄 */
+    --accent-brown: #9B8579;      /* 奶茶棕 - 強調色 */
+    --light-beige: #FDFAF6;       /* 米白色 - 卡片背景 */
+    --warm-vanilla: #E7D7C1;      /* 溫暖香草色 - 互動元素 */
+    --dark-cream: #8B7355;        /* 深奶油棕 - 主要文字 */
+    --soft-peach: #FFE6D5;        /* 柔和蜜桃色 - 特殊強調 */
+    --pale-cream: #FFF3E0;        /* 淺奶油色 - 次要背景 */
+    --golden-cream: #FFE0B2;      /* 金黃奶油色 - 重要元素 */
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 微軟正黑體;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-cream);
+    color: var(--text-color);
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 左側導航欄 */
+.sidebar {
+    width: 20%;  /* 固定寬度為20% */
+    min-width: 250px;  /* 設定最小寬度 */
+    max-width: 300px;  /* 設定最大寬度 */
+    background-color: var(--secondary-cream);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(155, 133, 121, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--warm-vanilla);
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-beige);
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-menu {
+    list-style: none;
+    width: 100%;
+}
+
+        .sidebar-menu li {
+            margin: 15px 0;
+        }
+
+.sidebar-menu a {
+    color: var(--dark-cream);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px;
+}
+
+        .user-auth {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+.user-auth a {
+    color: var(--dark-cream);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid var(--warm-vanilla);
+}
+
+/* 購物車相關樣式 */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 998;
+    transition: opacity 0.3s ease;
+}
+
+.cart-sidebar {
+    width: 300px;
+    position: fixed;
+    right: -300px;
+    top: 0;
+    height: 100vh;
+    background: var(--light-beige);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    transition: right 0.3s ease;
+}
+
+.cart-overlay.active {
+    display: block;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.cart-header h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #e67e22;
+}
+
+.cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details {
+    margin-left: 15px;
+    flex: 1;
+}
+
+.cart-item-title {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    color: var(--accent-brown);
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 20px;
+}
+
+.quantity-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.quantity-btn:hover {
+    background: #eee;
+}
+
+.delete-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #fff0f0;
+    color: #ff4d4d;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #ff4d4d;
+    color: white;
+    transform: scale(1.1);
+}
+
+.cart-summary {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.total-amount {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ffd700;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #ffc800;
+}
+
+.cart-empty {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+    font-size: 1.1rem;
+}
+
+/* 主要內容區 */
+.main-content {
+    width: 80%;
+    padding: 40px;
+    margin-left: 20%;
+    background-color: var(--primary-cream);
+}
+
+.product-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* 商品圖片區 */
+.product-images {
+    display: flex;
+    gap: 20px;
+}
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.detail {
+    width: 160px;
+    height: 160px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.detail:last-child {
+    margin-bottom: 0;
+}
+
+.detail:hover {
+    border-color: var(--accent-color);
+}
+
+.product-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+}
+
+.main-image-container {
+    display: flex;
+    gap: 20px;
+    max-width: 600px;
+}
+
+.main-image {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-title {
+    font-size: 1.8rem;
+    margin-top: 20px;
+    max-width: 600px;
+}
+
+.product-description {
+    color: #666;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* 商品資訊區 */
+.product-info {
+    flex: 1;
+}
+
+.product-price {
+    font-size: 2rem;
+    color: var(--accent-brown);
+    margin-bottom: 20px;
+}
+
+.product-options {
+    margin-bottom: 30px;
+}
+
+.option-group {
+    margin-bottom: 15px;
+}
+
+.option-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.option-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--golden-cream);
+    color: var(--dark-cream);
+}
+
+.btn-secondary {
+    background-color: var(--soft-peach);
+    color: var(--accent-brown);
+}
+
+/* 評論區 */
+.reviews-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+.review-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 添加評論輸入框相關的 CSS */
+.review-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.review-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.review-form button {
+    padding: 8px 20px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-form button:hover {
+    background-color: #e6c200;
+}
